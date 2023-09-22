@@ -10,17 +10,26 @@
 <main class="container">
     <section class="container">
         <h3>Add New Product</h3>
-        <form action="input-group mt-2">
-        <label>Name</label>
-            <label>Price</label>
-            <label>Name</label>
-            <label>Quantity</label>
-
-            private String name;
-            private double price;
-            private double quantity;
-            private Category category;
-            private boolean availability;
+        <form action="/add-product" method="post">
+            <div class="input-group mt-2">
+            <label class="input-group-text">Name</label>
+            <label class="input-group-text">Price</label>
+            <label class="input-group-text">Quantity</label>
+                <input class="form-control" name="features" type="text">
+            </div>
+            <div class="input-group mt-2">
+                <label class="inout-group-text">Category</label>
+                <select class="form-control" name="category">
+                    <option value="ELECTRONICS">Electronics</option>
+                    <option value="FOOD">Food</option>
+                    <option value="DRINK">Beverages</option>
+                    <option value="CLOTHING">Clothing</option>
+                    <option value="APPAREL">Shoes</option>
+                </select>
+            </div>
+           <div class="inout-group mt-2">
+               <button class="btn btn-primary">Add product</button>
+           </div>
         </form>
     </section>
 </main>

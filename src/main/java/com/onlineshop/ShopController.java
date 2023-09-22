@@ -12,10 +12,7 @@ import product.Product;
 
 @Controller
 public class ShopController {
-    @Autowired
-
     private ProductService productService;
-
     public ShopController(ProductService productService) {
         this.productService = productService;
     }
