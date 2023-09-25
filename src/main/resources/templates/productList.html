@@ -30,8 +30,7 @@
             <ol th:if="${!productArray.isEmpty()}"
                 class="list-group list-group-flush">
                 <li th:each="product: ${productArray}"
-                    th:class="${product.getId().toString()}
-                + 'list-group-item' ">
+                    th:class="list-group-item">
                     <span th:text="${product.getName()} + ' - '"></span>
                     <span th:text="${product.getPrice()} + ' - '"></span>
                     <span th:text="${product.getQuantity()} + ' - '"></span>
