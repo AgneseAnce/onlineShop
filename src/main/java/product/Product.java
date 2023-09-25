@@ -22,7 +22,7 @@ public class Product {
     private double price;
     private double quantity;
     private Category category;
-    private boolean availability;
+//    private boolean availability;
 
 
 

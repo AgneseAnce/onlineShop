@@ -27,7 +27,7 @@ public class ShopController {
         model.addAttribute("productArray",
                 this.productService.getAllProducts());
 
-        return "addProduct";
+        return "productList";
     }
 
     @GetMapping("/add-product")

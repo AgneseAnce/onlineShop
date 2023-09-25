@@ -13,18 +13,13 @@ public class ProductService {
         return this.productArray;
     }
 
-    public Product addProductItem(Product product)  {
-//        if (product.getName().isBlank())
-//            throw new Exception("Please provide product name");
-////        if (product.getCategory().isEmpty())
-////            throw new Exception("Please provide product name");
-//        if (product.getPrice().is())
-//            throw new Exception("Please provide product name");
-//        if (product.getName().isBlank())
-//            throw new Exception("Please provide product name");
+    public Product addProductItem(Product product) throws Exception  {
+        if (product.getName().isBlank())
+            throw new Exception("Please provide product name");
         this.productArray.add(product);
         return product;
     }
+
     /*
     * Create product
     * Delete
