@@ -21,7 +21,7 @@ public class ProductService {
         return product;
     }
 
-    public Product findTodoById(UUID id) throws Exception {
+    public Product findProductByID(UUID id) throws Exception {
         for (Product product: this.productArray){
             if (product.getId().equals(id)) return product;
         }
@@ -41,18 +41,7 @@ public class ProductService {
     }
 
 
-    // Needs endpoint, Controller, method for adding data
-    public Product addProductInfo(Product product) throws Exception{
-        for(Product updatedProduct: this.productArray) {
-            if (updatedProduct.getId().equals(product.getId())) {
-                updatedProduct.setName(product.getName());
-                updatedProduct.setPrice(product.getPrice());
-                updatedProduct.setQuantity(product.getQuantity());
-                updatedProduct.setCategory(product.getCategory());
-                return updatedProduct;
-            }
-        } throw new Exception("Product not found");
-    }
+
     /*
     * Create product =
     * Delete

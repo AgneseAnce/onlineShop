@@ -35,6 +35,12 @@
                     <span th:text="${product.getPrice()} + ' - '"></span>
                     <span th:text="${product.getQuantity()} + ' - '"></span>
                     <span th:text="${product.getCategory().toString()}"></span>
+                    <span>
+                        <a th:href="${'/edit/' + product.getId()}"
+                       class="btn btn-primary">&#9998;</a>
+                    <a th:href="${'/delete/' + product.getId()}"
+                       class="btn btn-danger">&#10008;</a>
+                </span>
                 </li>
             </ol>
         </section>

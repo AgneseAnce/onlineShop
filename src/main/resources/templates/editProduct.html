@@ -12,7 +12,7 @@
 <main class="container">
   <section class="container">
     <h3>Edit Products</h3>
-    <form th:action="${'/edit' + product.getId()}" method="post">
+    <form th:action="${'/edit/' + product.getId()}" method="post">
       <div class="input-group mt-2">
         <label class="input-group-text">Name</label>
         <input class="form-control" name="productName" type="text"
@@ -21,7 +21,7 @@
       <div class="input-group mt-2">
         <label class="input-group-text">Price</label>
         <input class="form-control" name="productPrice" type="number"
-               th:value="${product.getPrice()()}">
+               th:value="${product.getPrice()}">
       </div>
       <div class="input-group mt-2">
         <label class="input-group-text">Quantity</label>
@@ -30,7 +30,7 @@
       </div>
       <div class="input-group mt-2">
         <label class="input-group-text">Category</label>
-        <select class="form-control" name="Productcategory"
+        <select class="form-control" name="productCategory"
         th:value="${product.getCategory().toString()}">
           <option value="ELECTRONICS">Electronics</option>
           <option value="FOOD">Food</option>

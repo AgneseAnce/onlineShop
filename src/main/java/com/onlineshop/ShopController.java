@@ -38,6 +38,11 @@ public class ShopController {
         return "addProduct"; // HTML
     }
 
+    @GetMapping("/online-shop")
+    public String displaySellPage(){
+        return "shopTransactions";
+    }
+
     @PostMapping("/add-product")
     public String createProduct (Product product) {
         try {
@@ -49,10 +54,12 @@ public class ShopController {
         }
     }
 
+//    @PostMapping("/sell-product")
+
     @GetMapping("/edit/{id}")
     public String showEditProductPage(@PathVariable UUID id, Model model) {
         try {
-            Product product = this.productService.findTodoById(id);
+            Product product = this.productService.findProductByID(id);
             model.addAttribute("product", product);
             return "editProduct";
         } catch (Exception exception) {
@@ -60,11 +67,24 @@ public class ShopController {
                     + exception.getMessage();
         }
     }
-
+//
+//    @GetMapping("/update-status/{id}/{status}")
+//    public String updateTodo(@PathVariable() UUID id,
+//                             @PathVariable String status){
+//        try {
+//            Product foundProduct = this.productService.findProductByID();
+//            // Sets status to user input
+//            foundProduct.setStatus(TodoStatus.valueOf(status));
+//            this.productService.updateTodo(foundTodo);
+//            return "redirect:/?message=TODO_UPDATED_SUCCESSFULLY";
+//        } catch (Exception exception){
+//            return "redirect:/?message=TODO_UPDATE_FAILED&error=" + exception.getMessage();
+//        }
+//    }
     @PostMapping("/edit/{id}")
     public String editProduct(@PathVariable UUID id, Product product) {
         try {
-            this.productService.findTodoById(id);
+            this.productService.findProductByID(id);
             product.setId(id);
             this.productService.updateProduct(product);
             return "redirect:/?message=PRODUCT_UPDATED_SUCCESS";
@@ -73,4 +93,5 @@ public class ShopController {
                     + exception.getMessage();
         }
     }
+
 }
