@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import product.Product;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 @Service
 public class ProductService {
@@ -20,10 +21,42 @@ public class ProductService {
         return product;
     }
 
+    public Product findTodoById(UUID id) throws Exception {
+        for (Product product: this.productArray){
+            if (product.getId().equals(id)) return product;
+        }
+        throw new Exception("Product not found");
+    }
+
+    public Product updateProduct(Product product) throws Exception{
+        for(Product currentProduct: this.productArray) {
+            if (currentProduct.getId().equals(product.getId())) {
+                currentProduct.setName(product.getName());
+                currentProduct.setPrice(product.getPrice());
+                currentProduct.setQuantity(product.getQuantity());
+                currentProduct.setCategory(product.getCategory());
+                return currentProduct;
+            }
+        } throw new Exception("Product not found");
+    }
+
+
+    // Needs endpoint, Controller, method for adding data
+    public Product addProductInfo(Product product) throws Exception{
+        for(Product updatedProduct: this.productArray) {
+            if (updatedProduct.getId().equals(product.getId())) {
+                updatedProduct.setName(product.getName());
+                updatedProduct.setPrice(product.getPrice());
+                updatedProduct.setQuantity(product.getQuantity());
+                updatedProduct.setCategory(product.getCategory());
+                return updatedProduct;
+            }
+        } throw new Exception("Product not found");
+    }
     /*
-    * Create product
+    * Create product =
     * Delete
-    * Update
+    * Update =
     * Add information
     * Track stock
     * Search / sort
