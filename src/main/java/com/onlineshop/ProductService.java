@@ -48,6 +48,7 @@ public class ProductService {
 
     public Product sellProduct(Product product) throws Exception {
         double quantitySold = 0;
+
         for (Product foundProduct : this.productArray) {
             if (foundProduct.getId().equals(product.getId())) {
                 this.updateProduct(product);

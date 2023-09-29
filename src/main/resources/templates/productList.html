@@ -29,8 +29,8 @@
                 class="list-group list-group-flush">
                 <li th:each="product: ${productArray}"
                      th:class="list-group-item">
-                    <span th:text="${product.getName()} + ' - '"></span>
-                    <span th:text="${product.getPrice()} + ' - '"></span>
+                    <span th:text="${product.getName()} + ' - price: '"></span>
+                    <span th:text="${product.getPrice()} + ' - quantity: '"></span>
                     <span th:text="${product.getQuantity()} + ' - '"></span>
                     <span th:text="${product.getCategory().toString()}"></span>
                     <span>

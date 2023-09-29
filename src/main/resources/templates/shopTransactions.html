@@ -16,19 +16,20 @@
 
 
     <section class="container">
-        <form method="post">
+        <form th:action="${'/product-sold/' }" method="post">
+
         <ol th:if="${!productArray.isEmpty()}"
             class="list-group list-group-flush">
             <li th:each="product: ${productArray}"
                 th:class="list-group-item">
                 <b>
-                <span th:text="${product.getName()} + ' - '"></span>
-                <span th:text="${product.getPrice()} + ' - '"></span>
+                <span th:text="${product.getName()} + ' - price: '"></span>
+                <span th:text="${product.getPrice()} + ' - quantity: '"></span>
                 <span th:text="${product.getQuantity()} + ' - '"></span>
                 <span th:text="${product.getCategory().toString()}"></span>
                 </b>
                 <span class="input-group mt-2">
-                       <a class="btn btn-outline-primary btn-sm" href="/enter-quantity">Sell Product</a>
+                       <a class="btn btn-outline-primary btn-sm" href="/product_sold/{id}">Sell Product</a>
                         <label class="input-group-text">Quantity</label>
                         <input class="form-control" type="text" width="10">
                     </span>

@@ -103,9 +103,11 @@ public class ShopController {
 
 
     @PostMapping("/product_sold/{id}")
-    public String sellProductPost(@PathVariable UUID id, @PathVariable Product product){
+    public String sellProductPost(@PathVariable UUID id, Product product){
         try {
             Product foundProduct = this.productService.findProductByID(id);
+            product.setId(id);
+            this.productService.sellProduct(foundProduct);
             return "redirect:/?message=PRODUCT_SOLD_SUCCESSFULLY";
         } catch (Exception exception){
             return "redirect:/?message=PRODUCT_SELLING_FAILED&error=" + exception.getMessage();
