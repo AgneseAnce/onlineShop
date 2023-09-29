@@ -19,10 +19,8 @@
                   th:text="${error}">
             </span>
         </section>
-        <section class="container">
-        <span th:if="${!productArray.isEmpty()}"
-              th:text="${'Total items: ' + productArray.size()}"></span>
-            <span th:if="${productArray.isEmpty()}">No products to show</span>
+        <section class="container"
+                 th:replace="fragments/header.html::ifArrayEmpty">
         </section>
 
 
@@ -30,16 +28,16 @@
             <ol th:if="${!productArray.isEmpty()}"
                 class="list-group list-group-flush">
                 <li th:each="product: ${productArray}"
-                    th:class="list-group-item">
+                     th:class="list-group-item">
                     <span th:text="${product.getName()} + ' - '"></span>
                     <span th:text="${product.getPrice()} + ' - '"></span>
                     <span th:text="${product.getQuantity()} + ' - '"></span>
                     <span th:text="${product.getCategory().toString()}"></span>
                     <span>
                         <a th:href="${'/edit/' + product.getId()}"
-                       class="btn btn-primary">&#9998;</a>
+                           class="btn btn-primary btn-lg btn-sm">&#9998;</a>
                     <a th:href="${'/delete/' + product.getId()}"
-                       class="btn btn-danger">&#10008;</a>
+                       class="btn btn-danger btn-lg btn-sm">&#10008;</a>
                 </span>
                 </li>
             </ol>

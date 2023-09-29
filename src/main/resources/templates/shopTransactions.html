@@ -7,12 +7,38 @@
           rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
           crossorigin="anonymous">
 </head>
-<header th:replace="fragments/header.html :: shared_header"></header>
 <body>
+<header th:replace="fragments/header.html :: shared_header"></header>
 <main class="container">
-    <div class="input-group mt-2">
-        <button class="btn btn-primary">Sell Product</button>
-    </div>
+    <section class="container"
+             th:replace="fragments/header.html::ifArrayEmpty">
+    </section>
+
+
+    <section class="container">
+        <form method="post">
+        <ol th:if="${!productArray.isEmpty()}"
+            class="list-group list-group-flush">
+            <li th:each="product: ${productArray}"
+                th:class="list-group-item">
+                <b>
+                <span th:text="${product.getName()} + ' - '"></span>
+                <span th:text="${product.getPrice()} + ' - '"></span>
+                <span th:text="${product.getQuantity()} + ' - '"></span>
+                <span th:text="${product.getCategory().toString()}"></span>
+                </b>
+                <span class="input-group mt-2">
+                       <a class="btn btn-outline-primary btn-sm" href="/enter-quantity">Sell Product</a>
+                        <label class="input-group-text">Quantity</label>
+                        <input class="form-control" type="text" width="10">
+                    </span>
+                    </li>
+        </ol>
+                    <div class="input-group mt-2">
+                        <button class="btn btn-success">Confirm selling</button>
+                    </div>
+                </form>
+    </section>
 </main>
 </body>
 </html>

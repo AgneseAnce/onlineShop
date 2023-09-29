@@ -40,7 +40,23 @@ public class ProductService {
         } throw new Exception("Product not found");
     }
 
+    public void deleteProduct(UUID id) throws Exception {
+        if (!this.productArray.removeIf((product) ->
+                product.getId().equals(id)))
+            throw new Exception("Product with this ID not found");
+    }
 
+    public Product sellProduct(Product product) throws Exception {
+        double quantitySold = 0;
+        for (Product foundProduct : this.productArray) {
+            if (foundProduct.getId().equals(product.getId())) {
+                this.updateProduct(product);
+                foundProduct.setQuantity((product.getQuantity()) - quantitySold);
+                return foundProduct;
+            }
+        }
+        throw new Exception("Product not found");
+    }
 
     /*
     * Create product =

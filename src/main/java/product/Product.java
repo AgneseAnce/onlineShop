@@ -1,15 +1,13 @@
 package product;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Entity (name="product")
+@Entity(name="products")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -17,10 +15,11 @@ import java.util.UUID;
 public class Product {
 @Id
 @GeneratedValue
-    private UUID id;
+    private UUID id = UUID.randomUUID();
     private String name;
     private double price;
     private double quantity;
+    @Enumerated(EnumType.STRING)
     private Category category;
 //    private boolean availability;
 

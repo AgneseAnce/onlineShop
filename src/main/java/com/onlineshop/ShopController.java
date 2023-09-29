@@ -15,6 +15,7 @@ import java.util.UUID;
 
 @Controller
 public class ShopController {
+    @Autowired
     private ProductService productService;
     public ShopController(ProductService productService) {
         this.productService = productService;
@@ -38,11 +39,6 @@ public class ShopController {
         return "addProduct"; // HTML
     }
 
-    @GetMapping("/online-shop")
-    public String displaySellPage(){
-        return "shopTransactions";
-    }
-
     @PostMapping("/add-product")
     public String createProduct (Product product) {
         try {
@@ -54,7 +50,6 @@ public class ShopController {
         }
     }
 
-//    @PostMapping("/sell-product")
 
     @GetMapping("/edit/{id}")
     public String showEditProductPage(@PathVariable UUID id, Model model) {
@@ -67,20 +62,7 @@ public class ShopController {
                     + exception.getMessage();
         }
     }
-//
-//    @GetMapping("/update-status/{id}/{status}")
-//    public String updateTodo(@PathVariable() UUID id,
-//                             @PathVariable String status){
-//        try {
-//            Product foundProduct = this.productService.findProductByID();
-//            // Sets status to user input
-//            foundProduct.setStatus(TodoStatus.valueOf(status));
-//            this.productService.updateTodo(foundTodo);
-//            return "redirect:/?message=TODO_UPDATED_SUCCESSFULLY";
-//        } catch (Exception exception){
-//            return "redirect:/?message=TODO_UPDATE_FAILED&error=" + exception.getMessage();
-//        }
-//    }
+
     @PostMapping("/edit/{id}")
     public String editProduct(@PathVariable UUID id, Product product) {
         try {
@@ -89,9 +71,44 @@ public class ShopController {
             this.productService.updateProduct(product);
             return "redirect:/?message=PRODUCT_UPDATED_SUCCESS";
         } catch (Exception exception) {
-            return "redirect:/?message=PRODUCT_EDIT_FAILED&error="
+            return "redirect:/?message=PRODUCT_EDIT_FAILED&errors="
                     + exception.getMessage();
         }
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteProducts(@PathVariable UUID id){
+        try {
+            this.productService.deleteProduct(id);
+            return "redirect:/?message=PRODUCT_DELETED_SUCCESSFULLY";
+        } catch (Exception exception){
+            return "redirect:/?message=PRODUCT_DELETE_FAILED&error=" + exception.getMessage();
+        }
+    }
+
+    @GetMapping("/online-shop")
+    public String displayShopPage(
+            @RequestParam(required = false) String message,
+            @RequestParam(required = false) String error,
+            Model model) {
+        model.addAttribute("message", message);
+        model.addAttribute("error", error);
+        model.addAttribute("productArray",
+                this.productService.getAllProducts());
+
+        return "shopTransactions";
+    }
+
+ /*   @PostMapping("/enter-quantity")*/
+
+
+    @PostMapping("/product_sold/{id}")
+    public String sellProductPost(@PathVariable UUID id, @PathVariable Product product){
+        try {
+            Product foundProduct = this.productService.findProductByID(id);
+            return "redirect:/?message=PRODUCT_SOLD_SUCCESSFULLY";
+        } catch (Exception exception){
+            return "redirect:/?message=PRODUCT_SELLING_FAILED&error=" + exception.getMessage();
+        }
+    }
 }

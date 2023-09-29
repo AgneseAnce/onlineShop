@@ -9,7 +9,7 @@ public class Main {
 
     SessionFactory sessionFactory;
 
-    public static void main(String[] args) {
+    public static void start(String[] args) {
         Main main = new Main();
 
         main.sessionFactory = new Configuration()
@@ -19,7 +19,12 @@ public class Main {
 
         Session session = main.sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
+        Product product = new Product();
 
-//        session.persist(product);
+        session.persist(product);
+
+        transaction.commit();
+
+        session.close();
     }
 }

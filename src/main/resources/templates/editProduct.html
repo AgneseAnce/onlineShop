@@ -15,22 +15,22 @@
     <form th:action="${'/edit/' + product.getId()}" method="post">
       <div class="input-group mt-2">
         <label class="input-group-text">Name</label>
-        <input class="form-control" name="productName" type="text"
+        <input class="form-control" name="name" type="text"
         th:value="${product.getName()}">
       </div>
       <div class="input-group mt-2">
         <label class="input-group-text">Price</label>
-        <input class="form-control" name="productPrice" type="number"
+        <input class="form-control" name="price" type="text"
                th:value="${product.getPrice()}">
       </div>
       <div class="input-group mt-2">
         <label class="input-group-text">Quantity</label>
-        <input class="form-control" name="productQuantity" type="number"
+        <input class="form-control" name="quantity" type="text"
                th:value="${product.getQuantity()}">
       </div>
       <div class="input-group mt-2">
         <label class="input-group-text">Category</label>
-        <select class="form-control" name="productCategory"
+        <select class="form-control" name="category"
         th:value="${product.getCategory().toString()}">
           <option value="ELECTRONICS">Electronics</option>
           <option value="FOOD">Food</option>

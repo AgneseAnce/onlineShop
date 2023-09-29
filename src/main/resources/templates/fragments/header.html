@@ -1,11 +1,19 @@
 <header th:fragment="shared_header"
-        class="container-fluid bg-primary text-white
+        class="container-fluid bg-secondary text-white
         p-3 mb-3 text-center">
     <h1>Online Shop</h1>
     <nav>
         <a class="btn btn-light" href="/add-product">Add Product</a>
         <a class="btn btn-light" href="/">View Products</a>
-        <a class="btn btn-light" href="/add-product">Sell Products</a>
+        <a class="btn btn-light" href="/online-shop">Sell Products</a>
 
     </nav>
 </header>
+
+<section th:fragment="ifArrayEmpty" class="container">
+        <span th:if="${!productArray.isEmpty()}"
+              th:text="${'AVAILABLE PRODUCTS: ' + productArray.size()}"></span>
+    <span th:if="${productArray.isEmpty()}">No products to show</span>
+</section>
+
+
